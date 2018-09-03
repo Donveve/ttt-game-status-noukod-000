@@ -2,6 +2,9 @@
 #def position_taken?(board, index)
 #  !(board[index].nil? || board[index] == " ")
 #end
+def position_taken?(board, index)
+ !(board[index] == " " || board[index] == "" || board[index] == nil)
+end
 
 # Define your WIN_COMBINATIONS constant
 board = ["O", "O", "X",
@@ -19,9 +22,6 @@ WIN_COMBINATIONS = [
 [2,4,6]
 ]
 
-def position_taken?(board, index)
- !(board[index] == " " || board[index] == "" || board[index] == nil)
-end
 
 def won?(array)
   WIN_COMBINATIONS.each do |winner_set|
