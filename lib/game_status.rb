@@ -37,9 +37,10 @@ def full?(board)
 end
 
 def draw?(board)
-  full?(board)
-  !(won?(board))
+  full?(board) && won?(board) == nil
 end
+
+
 def over?(board)
 if  draw?(board) || won?(board)
   full?(board)
@@ -48,6 +49,7 @@ else
   return false
 end
 end
+
 def winner(board)
   if won?(board)
    return board[won?(board)[0]]
