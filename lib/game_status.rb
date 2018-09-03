@@ -45,9 +45,8 @@ def full?(array)
 end
 
 puts full?(board)
-puts
-puts
-puts
+
+
 def draw?(array2)
   if full?(array2) && !(won?(array2))
     puts "oh no it looks like a draw!"
