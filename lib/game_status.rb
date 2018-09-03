@@ -4,66 +4,36 @@ def position_taken?(board, index)
 end
 
 # Define your WIN_COMBINATIONS constant
-board = ["O", "O", "X",
-         "X", "X", "O",
-         "O", "X", "X"]
-
-WIN_COMBINATIONS = [
-[0,1,2],
-[3,4,5],
-[6,7,8],
-[0,3,6],
-[1,4,7],
-[2,5,8],
-[0,4,8],
-[2,4,6]
-]
-
-
-def won?(array)
-  WIN_COMBINATIONS.each do |winner_set|
-    if array[winner_set[0]] == array[winner_set[1]] &&
-       array[winner_set[1]] == array[winner_set[2]] &&
-       position_taken?(array, winner_set[0])
-       puts "somebody won!"
-       return true
-       return winner_set
-    end
+def display_board(board)
+  puts " #{board[0]} | #{board[1]} | #{board[2]} "
+  puts "-----------"
+  puts " #{board[3]} | #{board[4]} | #{board[5]} "
+  puts "-----------"
+  puts " #{board[6]} | #{board[7]} | #{board[8]} "
+end
+def won?(board)
+  WIN_COMBINATIONS.find do |combo|
+    # original argument "position_taken?(board, combo)"
+    position_taken?(board, combo[0]) &&
+    board[combo[0]] == board[combo[1]] &&
+    board[combo[0]] == board[combo[2]]
   end
 end
-
-puts won?(board)
-
-def full?(array)
- if !(array.any?{|i| i == " "})
-   puts "the board is full!"
-   return true
- else
-   puts "the board is not yet full"
-   return false
- end
-end
-
-puts full?(board)
-
-
-def draw?(array2)
-  if full?(array2) && !(won?(array2))
-    puts "oh no it looks like a draw!"
-    return true
-  else
-    puts "it's not a draw afterall"
-    return false
+def full?(board)
+  board.all? do |index|
+    index != " "
   end
 end
-
-puts draw?(board)
-
-
+def draw?(board)
+  full?(board)
+  !(won?(board))
+end
+def over?(board)
+  draw?(board) || won?(board)
+  full?(board)
+end
 def winner(board)
-  if winning_combo = won?(board)
-    board[winning_combo.first]
+  if won?(board)
+   return board[won?(board)[0]]
   end
 end
-
-puts winner(board)
