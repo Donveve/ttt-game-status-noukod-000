@@ -13,7 +13,7 @@ WIN_COMBINATIONS = [
   [2,5,8],
   [0,4,8],
   [2,4,6]]
-  
+
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
