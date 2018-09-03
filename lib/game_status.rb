@@ -60,17 +60,6 @@ end
 
 puts draw?(board)
 
-def over?(array3)
-  if full?(array3) || !(won?(array3)) || draw?(array3)
-    puts "GAME OVER"
-    return true
-  else
-    puts "it ain't over till it's over baby!"
-    return false
-  end
-end
-
-puts over?(board)
 
 def winner(board)
   if winning_combo = won?(board)
