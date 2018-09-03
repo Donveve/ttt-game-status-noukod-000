@@ -55,10 +55,10 @@ end
 def over?(array3)
   if full?(array3) || !(won?(array3)) || draw?(array3)
     puts "GAME OVER"
-    return true
+    return false
   else
     puts "it ain't over till it's over baby!"
-    return false
+    return true
   end
 end
 puts over?(board)
