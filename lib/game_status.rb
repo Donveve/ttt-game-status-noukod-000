@@ -4,8 +4,8 @@
 #end
 
 # Define your WIN_COMBINATIONS constant
-board = ["O", "O", "X", 
-         "X", "X", "O", 
+board = ["O", "O", "X",
+         "X", "X", "O",
          "O", "X", "X"]
 
 WIN_COMBINATIONS = [
@@ -29,7 +29,7 @@ def won?(array)
        array[winner_set[1]] == array[winner_set[2]] &&
        position_taken?(array, winner_set[0])
        puts "somebody won!"
-       return true 
+       return true
        return winner_set
     end
   end
@@ -41,25 +41,25 @@ def full?(array)
  if !(array.any?{|i| i == " "})
    puts "the board is full!"
    return true
- else 
+ else
    puts "the board is not yet full"
    return false
- end 
-end 
+ end
+end
 
 puts full?(board)
 puts
 puts
-puts 
+puts
 def draw?(array2)
   if full?(array2) && !(won?(array2))
     puts "oh no it looks like a draw!"
-    return true 
-  else 
+    return true
+  else
     puts "it's not a draw afterall"
-    return false 
-  end 
-end 
+    return false
+  end
+end
 
 puts draw?(board)
 
@@ -67,11 +67,11 @@ def over?(array3)
   if full?(array3) || !(won?(array3)) || draw?(array3)
     puts "GAME OVER"
     return true
-  else 
+  else
     puts "it ain't over till it's over baby!"
-    return false 
-  end 
-end  
+    return false
+  end
+end
 
 puts over?(board)
 
