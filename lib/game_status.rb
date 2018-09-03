@@ -1,79 +1,84 @@
 # Helper Method
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
-end
+#def position_taken?(board, index)
+#  !(board[index].nil? || board[index] == " ")
+#end
 
 # Define your WIN_COMBINATIONS constant
-board = ["X", "X", "O", "X", "O", "X", "X", "X", "O"]
-
+board = ["O", "O", "X", 
+         "X", "X", "O", 
+         "O", "X", "X"]
 
 WIN_COMBINATIONS = [
-  [0,1,2],
-  [3,4,5],
-  [6,7,8],
-  [0,4,8],
-  [2,4,6],
-  [0,3,6],
-  [1,4,7],
-  [2,5,8]
-  ]
+[0,1,2],
+[3,4,5],
+[6,7,8],
+[0,3,6],
+[1,4,7],
+[2,5,8],
+[0,4,8],
+[2,4,6]
+]
 
-def won?(board)
-  winner = nil
-  WIN_COMBINATIONS.each do |combo|
-    if combo.all? {|idx| board[idx] == "X"}
-      winner = combo
-    elsif combo.all? {|idx| board[idx] == "O"}
-      winner = combo
-    else
-      false
+def position_taken?(board, index)
+ !(board[index] == " " || board[index] == "" || board[index] == nil)
+end
+
+def won?(array)
+  WIN_COMBINATIONS.each do |winner_set|
+    if array[winner_set[0]] == array[winner_set[1]] &&
+       array[winner_set[1]] == array[winner_set[2]] &&
+       position_taken?(array, winner_set[0])
+       puts "somebody won!"
+       return true 
+       return winner_set
     end
   end
-  if winner != nil
-    winner
-  else
-    false
-  end
 end
 
-def full?(board)
-  board.all? {|token| token == "X" || token == "O"}
-end
+puts won?(board)
 
-def draw?(board)
-  if full?(board)
-    if won?(board) == false
-      true
-    else
-      false
-    end
-  else
-    false
-  end
-end
+def full?(array)
+ if !(array.any?{|i| i == " "})
+   puts "the board is full!"
+   return true
+ else 
+   puts "the board is not yet full"
+   return false
+ end 
+end 
 
-def over?(board)
-  if full?(board) || !(won?(board)) || draw?(board)
+puts full?(board)
+puts
+puts
+puts 
+def draw?(array2)
+  if full?(array2) && !(won?(array2))
+    puts "oh no it looks like a draw!"
+    return true 
+  else 
+    puts "it's not a draw afterall"
+    return false 
+  end 
+end 
+
+puts draw?(board)
+
+def over?(array3)
+  if full?(array3) || !(won?(array3)) || draw?(array3)
     puts "GAME OVER"
-    return false
-  else
-    puts "it ain't over till it's over baby!"
     return true
-  end
-end
+  else 
+    puts "it ain't over till it's over baby!"
+    return false 
+  end 
+end  
+
 puts over?(board)
 
 def winner(board)
-  winner = nil
-  WIN_COMBINATIONS.each do |combo|
-    if combo.all? {|idx| board[idx] == "X"}
-      winner = "X"
-    elsif combo.all? {|idx| board[idx] == "O"}
-      winner = "O"
-    else
-    end
+  if winning_combo = won?(board)
+    board[winning_combo.first]
   end
-  winner
 end
 
-winner(board)
+puts winner(board)
